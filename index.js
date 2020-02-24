@@ -31,17 +31,17 @@ function writeFile(file, data) {
 }
 
 async function addServer(gId) {
-    if (gId === '') return cLog('Error no data given.', true)
+    if (gId === '') return console.log('Error no data given.')
     let data = readFile('data.json');
     data.serverIds.push(gId);
     let result = writeFile('data.json', data);
     if (result === false) {
-        cLog('Error writing new ID to System.', true);
+        console.log('Error writing new ID to System.');
     }
 }
 
 async function removeServer(gId) {
-    if (gId === '') return cLog('Error no data given.', true)
+    if (gId === '') return console.log('Error no data given.')
     let data = readFile('data.json');
     let mod = data.serverIds.filter(function (value, index, arr) {
         if (value === gId) {
@@ -58,7 +58,7 @@ async function removeServer(gId) {
     });
     let result = writeFile('data.json', newData);
     if (result === false) {
-        cLog('Error removing ID from System.', true);
+        console.log('Error removing ID from System.');
     }
 }
 
@@ -121,15 +121,15 @@ client.on('warn', info => {
 });
 
 client.on('disconnect', () => {
-    cLog('Disconnected from Websocket');
+    console.log('Disconnected from Websocket');
 });
 
 client.on('reconnecting', () => {
-    cLog('Reconnecting to Websocket');
+    console.log('Reconnecting to Websocket');
 });
 
 client.on('ready', () => {
-    cLog('Finished Booting');
+    console.log('Finished Booting');
     setTimeout(checkGuilds, 25);
 });
 
